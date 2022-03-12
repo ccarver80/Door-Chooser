@@ -1,49 +1,50 @@
-import { render } from "@testing-library/react";
+
 import React, { useEffect, useState } from "react";
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
-import Game from "./Game";
+
 
 
 const Home = (props) => {
+  const [difficulty, setDifficulty] = useState();
 
- const [difficulty, setDifficulty] = useState()
- const nav = useNavigate(   )
- useEffect(() => {
-    console.log(difficulty);
+  
+  useEffect(() => {
     props.getDifficulty(difficulty);
-    if(props.isDiffSet){
-        nav('/game')
-    }
- }, [difficulty])
+  });
 
-   
-   
   return (
     <div className="center">
-      <h1>Pick your difficulty:</h1>
+        <div className="title">
+        <h1>Random Door Chooser Game</h1>
+        <h2>By: Chris Carver</h2>
+        </div>
+      <h1>Pick a difficulty:</h1>
 
-      <button className="startButton" onClick={() => {
-          setDifficulty(0);
-         
-      }} 
-      >Easy</button>
+      <button
+        className="startButton"
+        onClick={() => {
+          setDifficulty(6);
+        }}
+      >
+        Easy
+      </button>
 
-      <button className="startButton" onClick={() => {
-          setDifficulty(1);
-          
-      }} >Normal</button>
+      <button
+        className="startButton"
+        onClick={() => {
+          setDifficulty(4);
+        }}
+      >
+        Normal
+      </button>
 
-      <button className="startButton" onClick={() => {
+      <button
+        className="startButton"
+        onClick={() => {
           setDifficulty(2);
-        
-      }} >Hard</button>
-
-      
-            
-     
-              
-         
-    
+        }}
+      >
+        Hard
+      </button>
     </div>
   );
 };

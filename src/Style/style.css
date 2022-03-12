@@ -1,5 +1,5 @@
 body {
-    /* background-color: red; */
+    background-color: red;
 }
 
 .center {
@@ -11,11 +11,43 @@ body {
     margin: 1rem;
 }
 
+.title {
+    padding-top: 2rem;
+    text-align: center;
+    font-size: 2rem;
+}
+
 .startButton {
     margin: 2rem;
     font-size: 3rem;
-    display: block;
-    /* background-color: blue; */
+    display: inline;
+    background-color: blue;
     padding: 2rem;
-    /* border: 3px solid gray ; */
+    border: 3px solid gray ;
+}
+
+.scoreBoard {
+    text-align: center;
+}
+
+.doors {
+    text-align: center;
+}
+
+.doors img {
+    display: inline;
+    margin: auto;
+    height: 20rem;
+    padding: 2rem;
+}
+
+.gameOver {
+    display: none;
+}
+
+.gameButtons {
+    font-size: 3rem;
+    background-color: blue;
+    padding: 2rem; 
+    border: 3px solid gray;
 }

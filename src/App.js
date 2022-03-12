@@ -6,30 +6,31 @@ import { useEffect, useState } from "react";
 
 function App() {
   const [difficulty, setDifficulty] = useState()
-  const [isDiffSet, setDiff] = useState(false)
+  
 
   const getDifficulty = (value) => setDifficulty(value)
-  const removeDifficulty = (value) => setDiff(value)
+  
 
-
+  const nav = useNavigate()
   useEffect(() => {
-    console.log(difficulty)
-      setDiff(true)
+    if(difficulty != undefined){
+      nav('/game')
+    }else {
+      nav('/')
+    }
+    
     
   }, [difficulty])
 
-  useEffect(() => {
-    
-  }, [isDiffSet])
   
   
   return (
-    <BrowserRouter>
+    
       <Routes>
-        <Route exact path="/" element={<Home isDiffSet={isDiffSet} getDifficulty={getDifficulty} />} />
-        <Route path="/game" element={<Game isDiffSet={isDiffSet} diff={difficulty} removeDifficulty={removeDifficulty} />} />
+        <Route exact path="/" element={<Home  getDifficulty={getDifficulty} />} />
+        <Route path="/game" element={<Game  diff={difficulty} getDifficulty={getDifficulty} />} />
       </Routes>
-    </BrowserRouter>
+    
   );
 }
 
