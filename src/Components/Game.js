@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import doorClosed from "../imgs/door-closed.png";
 import doorOpen from "../imgs/door-open.png";
-import scary from '../imgs/scary.png'
+import scary from "../imgs/scary.png";
 const Game = (props) => {
   const [score, setScore] = useState(0);
   const [randomNumber, setRandomNumber] = useState();
@@ -24,11 +25,11 @@ const Game = (props) => {
       id: i,
     });
   }
-
+  const nav = useNavigate();
   function checkDoor(id) {
     if (id === randomNumber) {
-        document.getElementById(id).src = scary
-        document.getElementById('gameOver').style.display = 'block'
+      props.getScore(score);
+      nav("/gameOver");
     } else {
       document.getElementById(id).src = doorOpen;
       setTimeout(() => {
@@ -48,7 +49,7 @@ const Game = (props) => {
         <h1>Score: {score}</h1>
         <h2>Pick a Door</h2>
       </div>
-      <div className="doors">
+      <div id="doors" className="doors">
         {doors.map((door) => (
           <img
             alt="door"
@@ -60,13 +61,11 @@ const Game = (props) => {
             }}
           />
         ))}
-        <div>
-        <div id='gameOver' className="gameOver"><h1>You got caught! your score was {score} </h1></div>
-          <button className="gameButtons" onClick={resetGame}>
-            return
-          </button>
-        </div>
       </div>
+    
+      <button className="gameButtons" onClick={resetGame}>
+        return
+      </button>
     </div>
   );
 };

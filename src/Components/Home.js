@@ -45,6 +45,8 @@ const Home = (props) => {
       >
         Hard
       </button>
+
+      <h3 className="footer">Contact me at ckc_80@outlook.com</h3>
     </div>
   );
 };

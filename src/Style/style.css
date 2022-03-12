@@ -3,16 +3,11 @@ body {
 }
 
 .center {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    margin: 1rem;
+   margin: auto;
 }
 
 .title {
-    padding-top: 2rem;
+    margin:auto; 
     text-align: center;
     font-size: 2rem;
 }
@@ -46,8 +41,24 @@ body {
 }
 
 .gameButtons {
+    display: block;
     font-size: 3rem;
     background-color: blue;
     padding: 2rem; 
     border: 3px solid gray;
+}
+
+.footer {
+    position:absolute;
+    bottom: 2rem;
+}
+
+@media screen and (max-width: 900px) {
+    .title {
+        margin-top: 2rem;
+        font-size: 1rem;
+    }
+
+
+    
 }
