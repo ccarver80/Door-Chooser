@@ -3,6 +3,7 @@ import './Style/style.css'
 import Home from "./Components/Home";
 import Game from './Components/Game'; 
 import GameOver from "./Components/GameOver";
+import GameWin from './Components/GameWin'
 import { useEffect, useState } from "react";
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
         <Route exact path="/" element={<Home  getDifficulty={getDifficulty} />} />
         <Route path="/game" element={<Game getScore={getScore}  diff={difficulty} getDifficulty={getDifficulty} />} />
         <Route path="/gameOver" element={<GameOver score={score}/>} />
+        <Route path="/gameWin" element={<GameWin />} />
 
       </Routes>
     

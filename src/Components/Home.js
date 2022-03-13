@@ -17,7 +17,8 @@ const Home = (props) => {
         <h1>Random Door Chooser Game</h1>
         <h2>By: Chris Carver</h2>
         </div>
-      <h1>Pick a difficulty:</h1>
+      <h1>Progressive Mode</h1>
+      <h2>Pick a difficulty:</h2>
 
       <button
         className="startButton"
@@ -45,6 +46,10 @@ const Home = (props) => {
       >
         Hard
       </button>
+
+      <h1>Escape Mode</h1>
+      <h2>Try and escape and make it to the final door</h2>
+      <button className="startButton" onClick={() => setDifficulty(10)}>Escape</button>
 
       <h3 className="footer">Contact me at ckc_80@outlook.com</h3>
     </div>

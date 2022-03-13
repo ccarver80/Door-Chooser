@@ -3,19 +3,33 @@ import { useNavigate } from "react-router-dom";
 
 import doorClosed from "../imgs/door-closed.png";
 import doorOpen from "../imgs/door-open.png";
-import scary from "../imgs/scary.png";
+
 const Game = (props) => {
-  const [score, setScore] = useState(0);
+  const [progressiveScore, setProgressiveScore] = useState(0);
+  const [escapeScore, setEscapeScore] = useState(10);
   const [randomNumber, setRandomNumber] = useState();
+  const [isProgressiveGameMode, setProgressiveMode] = useState();
 
   //random number function to pick a random door
   useEffect(() => {
+    if (props.diff < 10) {
+      setProgressiveMode(true);
+    } else {
+      setProgressiveMode(false);
+    }
     function getRandomDoor() {
       const randomDoor = Math.ceil(Math.random() * props.diff);
       setRandomNumber(randomDoor);
     }
+
     getRandomDoor();
-  }, [score, props.diff]);
+  }, [progressiveScore, props.diff]);
+
+  useEffect(() => {
+    if(escapeScore <= 1) {
+     nav('/gameWin')
+    }
+  }, [escapeScore])
 
   const doors = [];
 
@@ -25,17 +39,34 @@ const Game = (props) => {
       id: i,
     });
   }
+  
   const nav = useNavigate();
   function checkDoor(id) {
-    if (id === randomNumber) {
-      props.getScore(score);
-      nav("/gameOver");
+    if (doors.length < 10) {
+      if (id === randomNumber) {
+        props.getScore(progressiveScore);
+        nav("/gameOver");
+      } else {
+        document.getElementById(id).src = doorOpen;
+        setTimeout(() => {
+          document.getElementById(id).src = doorClosed;
+        }, 1000);
+        setProgressiveScore(progressiveScore + 1);
+      }
     } else {
-      document.getElementById(id).src = doorOpen;
-      setTimeout(() => {
-        document.getElementById(id).src = doorClosed;
-      }, 1000);
-      setScore(score + 1);
+      if (id === randomNumber) {
+        props.getScore(escapeScore);
+        nav("/gameOver");
+      } else {
+        setEscapeScore(escapeScore - 1);
+        document.getElementById(id).src = doorOpen;
+        setTimeout(() => {
+          document.getElementById(id).src = doorClosed;
+        }, 1000);
+        setTimeout(() => {
+          document.getElementById(id).style.display = "none";
+        }, 500);
+      }
     }
   }
 
@@ -46,7 +77,11 @@ const Game = (props) => {
   return (
     <div>
       <div className="scoreBoard">
-        <h1>Score: {score}</h1>
+        {isProgressiveGameMode ? (
+          <h1>Score: {progressiveScore}</h1>
+        ) : (
+          <h1>Round: {escapeScore}</h1>
+        )}
         <h2>Pick a Door</h2>
       </div>
       <div id="doors" className="doors">
@@ -62,7 +97,7 @@ const Game = (props) => {
           />
         ))}
       </div>
-    
+
       <button className="gameButtons" onClick={resetGame}>
         return
       </button>

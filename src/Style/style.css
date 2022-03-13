@@ -40,6 +40,10 @@ body {
     display: none;
 }
 
+.gameWin {
+    width: 75%;
+}
+
 .gameButtons {
     display: block;
     font-size: 3rem;
@@ -48,10 +52,6 @@ body {
     border: 3px solid gray;
 }
 
-.footer {
-    position:absolute;
-    bottom: 2rem;
-}
 
 @media screen and (max-width: 900px) {
     .title {
